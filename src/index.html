@@ -41,6 +41,7 @@
     <p class="lead">Add and List Sneaker Purchases.</p>
   </div>
 
+<!--Bootstrap Predefined Styles-->
 <!--The Bootstrap grid system has four classes:-->
 <!--xs (for phones, stands for column extra small <= 576px)-->
 <!--sm (for tablets, stands for column extra small >= 576px)-->
@@ -50,10 +51,12 @@
 
 <!--mb sets sets margin bottom-->
 <!--mt sets sets margin top-->
+<!--btn-sm small button-->
+<!--btn-lg large button-->
 
   <div class="row">
     <div class="col-md-12 order-md-1">
-      <h3 class="mb-3">Add new purchase</h3>
+      <h2 class="mb-3">Add new purchase</h2>
       <form class="needs-validation" novalidate>
         <div class="row">
           <div class="col-md-3 mb-3">
@@ -108,7 +111,7 @@
             <label class="custom-control-label" for="writeToJSONFile">Write this to JSON file</label>
         </div>
 
-        <button class="btn btn-primary btn-lg btn-block mt-3 mb-3" type="submit">Add Purchase</button>
+        <button class="btn btn-primary btn-sm btn-block mt-3 mb-3" type="submit">Add Purchase</button>
       </form>
     </div>
 
@@ -117,7 +120,7 @@
       <div class="col-md-12 order-md-2">
       <hr>
       <div>
-          <h3 class="mb-3">List of purchases</h3>
+          <h2 class="mb-3">List of purchases</h2>
           <p>
               <form class="card p-2">
                 <div class="input-group">

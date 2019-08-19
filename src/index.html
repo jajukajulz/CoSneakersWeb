@@ -11,10 +11,14 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/checkout/">
 
     <!-- Bootstrap core CSS -->
-<link href="./static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MDBootstrap Datatables  -->
+    <link href="./static/css/addons/datatables.min.css" rel="stylesheet">
 
 
     <style>
+      /* Vanilla Bootstrap  */
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -29,160 +33,203 @@
           font-size: 3.5rem;
         }
       }
+      /* Vanilla Bootstrap  */
+
+      /* MDBootstrap Datatables  */
+        table.dataTable thead .sorting:after,
+        table.dataTable thead .sorting:before,
+        table.dataTable thead .sorting_asc:after,
+        table.dataTable thead .sorting_asc:before,
+        table.dataTable thead .sorting_asc_disabled:after,
+        table.dataTable thead .sorting_asc_disabled:before,
+        table.dataTable thead .sorting_desc:after,
+        table.dataTable thead .sorting_desc:before,
+        table.dataTable thead .sorting_desc_disabled:after,
+        table.dataTable thead .sorting_desc_disabled:before {
+            bottom: .5em;
+        }
+        /* MDBootstrap Datatables  */
     </style>
     <!-- Custom styles for this template -->
     <link href="./static/css/form-validation.css" rel="stylesheet">
+
+    <!-- MDBootstrap Datatables JS  -->
+    <script type="text/javascript" src="./static/js/addons/datatables.min.js"></script>
+
   </head>
   <body class="bg-light">
     <div class="container">
-  <div class="py-5 text-center">
-    <img class="d-block mx-auto mb-4" src="./static/img/logo_black.png" alt="" height="96">
-    <h2>Sneaker Registry</h2>
-    <p class="lead">Add and List Sneaker Purchases.</p>
-  </div>
-
-<!--Bootstrap Predefined Styles-->
-<!--The Bootstrap grid system has four classes:-->
-<!--xs (for phones, stands for column extra small <= 576px)-->
-<!--sm (for tablets, stands for column extra small >= 576px)-->
-<!--md (for desktops, stands for column medium >= 768px)-->
-<!--lg (for desktops, stands for column medium >= 992px)-->
-<!--xl (for larger desktops, stands for column large >= 1200px)-->
-
-<!--mb sets sets margin bottom-->
-<!--mt sets sets margin top-->
-<!--btn-sm small button-->
-<!--btn-lg large button-->
-
-  <div class="row">
-    <div class="col-md-12 order-md-1">
-      <h2 class="mb-3">Add new purchase</h2>
-      <form class="needs-validation" novalidate>
-        <div class="row">
-          <div class="col-md-3 mb-3">
-            <label for="sneakerBrand">Brand</label>
-            <input type="text" class="form-control" id="sneakerBrand" placeholder="Enter name of brand..." value="" required>
-            <div class="invalid-feedback">
-              Valid Brand name is required.
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="sneakerStyle">Style</label>
-            <input type="text" class="form-control" id="sneakerStyle" placeholder="Enter name of style..." value="" required>
-            <div class="invalid-feedback">
-              Valid Style name is required.
-            </div>
-          </div>
-          <div class="col-md-6 mb-3">
-            <label for="sneakerPurchaseDate">Purchase Date</label>
-            <input type="text" class="form-control" id="sneakerPurchaseDate" placeholder="Enter sneaker purchase date..." required>
-            <div class="invalid-feedback">
-              Expiration date required
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-3 mb-3">
-            <label for="sneakerPrice">Price</label>
-            <input type="text" class="form-control" id="sneakerPrice" placeholder="Enter sneaker price..." value="" required>
-            <div class="invalid-feedback">
-              Valid Brand name is required.
-            </div>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label for="sneakerColour">Colour</label>
-            <select class="custom-select d-block w-100" id="sneakerColour" required>
-              <option value="">Choose...</option>
-              <option>Black</option>
-              <option>White</option>
-              <option>Red</option>
-              <option>Grey</option>
-              <option>Other</option>
-            </select>
-            <div class="invalid-feedback">
-              Please select a valid colour.
-            </div>
-          </div>
-        </div>
-
-        <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input form-control" id="writeToJSONFile">
-            <label class="custom-control-label" for="writeToJSONFile">Write this to JSON file</label>
-        </div>
-
-        <button class="btn btn-primary btn-sm btn-block mt-3 mb-3" type="submit">Add Purchase</button>
-      </form>
-    </div>
-
-  </div>
-  <div class="row">
-      <div class="col-md-12 order-md-2">
-      <hr>
-      <div>
-          <h2 class="mb-3">List of purchases</h2>
-          <p>
-              <form class="card p-2">
-                <div class="input-group">
-                  <input type="text" class="form-control" placeholder="Search purchases">
-                  <div class="input-group-append">
-                    <button type="submit" class="btn btn-secondary">Search</button>
-                  </div>
-                </div>
-              </form>
-          </p>
-          <table class="table">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Brand</th>
-                  <th scope="col">Style</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Color</th>
-                  <th scope="col">Purchase Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Brand 1</td>
-                  <td>Style 1</td>
-                  <td>Price 1</td>
-                  <td>Colour 1</td>
-                  <td>Date Bought 1</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Brand 2</td>
-                  <td>Style 2</td>
-                  <td>Price 2</td>
-                  <td>Colour 2</td>
-                  <td>Date Bought 2</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Brand 3</td>
-                  <td>Style 3</td>
-                  <td>Price 3</td>
-                  <td>Colour 3</td>
-                  <td>Date Bought 3</td>
-                </tr>
-              </tbody>
-          </table>
+      <div class="py-5 text-center">
+        <img class="d-block mx-auto mb-4" src="./static/img/logo_black.png" alt="" height="96">
+        <h2>Sneaker Registry</h2>
+        <p class="lead">Add and List Sneaker Purchases.</p>
       </div>
-    </div>
-  </div>
 
-  <footer class="my-5 pt-5 text-muted text-center text-small">
-    <p class="mb-1">&copy; 2019 CoSneakers by Julian Kanjere</p>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="#">Privacy</a></li>
-      <li class="list-inline-item"><a href="#">Terms</a></li>
-      <li class="list-inline-item"><a href="#">Support</a></li>
-    </ul>
-  </footer>
-</div>
-<script src="./static/js/jquery-3.3.1.slim.min.js"></script>
-      <script>window.jQuery || document.write('<script src="./static/js/jquery-slim.min.js"><\/script>')</script><script src="./static/js/bootstrap.bundle.min.js"></script>
-        <script src="./static/js/form-validation.js"></script></body>
+    <!--Bootstrap Predefined Styles-->
+    <!--The Bootstrap grid system has four classes:-->
+    <!--xs (for phones, stands for column extra small <= 576px)-->
+    <!--sm (for tablets, stands for column extra small >= 576px)-->
+    <!--md (for desktops, stands for column medium >= 768px)-->
+    <!--lg (for desktops, stands for column medium >= 992px)-->
+    <!--xl (for larger desktops, stands for column large >= 1200px)-->
+
+    <!--mb sets sets margin bottom-->
+    <!--mt sets sets margin top-->
+    <!--btn-sm small button-->
+    <!--btn-lg large button-->
+
+      <div class="row">
+        <div class="col-md-12 order-md-1">
+          <h2 class="mb-3">Add new purchase</h2>
+          <form class="needs-validation" novalidate>
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="sneakerBrand">Brand</label>
+                <input type="text" class="form-control" id="sneakerBrand" placeholder="Enter name of brand..." value="" required>
+                <div class="invalid-feedback">
+                  Valid Brand name is required.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="sneakerStyle">Style</label>
+                <input type="text" class="form-control" id="sneakerStyle" placeholder="Enter name of style..." value="" required>
+                <div class="invalid-feedback">
+                  Valid Style name is required.
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="sneakerPurchaseDate">Purchase Date</label>
+                <input type="text" class="form-control" id="sneakerPurchaseDate" placeholder="Enter sneaker purchase date..." required>
+                <div class="invalid-feedback">
+                  Expiration date required
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-3 mb-3">
+                <label for="sneakerPrice">Price</label>
+                <input type="text" class="form-control" id="sneakerPrice" placeholder="Enter sneaker price..." value="" required>
+                <div class="invalid-feedback">
+                  Valid Brand name is required.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="sneakerColour">Colour</label>
+                <select class="custom-select d-block w-100" id="sneakerColour" required>
+                  <option value="">Choose...</option>
+                  <option>Black</option>
+                  <option>White</option>
+                  <option>Red</option>
+                  <option>Grey</option>
+                  <option>Other</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid colour.
+                </div>
+              </div>
+            </div>
+
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input form-control" id="writeToJSONFile">
+                <label class="custom-control-label" for="writeToJSONFile">Write this to JSON file</label>
+            </div>
+
+            <button class="btn btn-primary btn-sm btn-block mt-3 mb-3" type="submit">Add Purchase</button>
+          </form>
+        </div>
+
+      </div>
+      <div class="row">
+          <div class="col-md-12 order-md-2">
+          <hr>
+          <div>
+              <h2 class="mb-3">List of purchases</h2>
+              <p>
+                  <form class="card p-2">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search purchases">
+                      <div class="input-group-append">
+                        <button type="submit" class="btn btn-secondary">Search</button>
+                      </div>
+                    </div>
+                  </form>
+              </p>
+              <table id="dtSneakersTable" class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Brand</th>
+                      <th scope="col">Style</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Color</th>
+                      <th scope="col">Purchase Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Brand 1</td>
+                      <td>Style 1</td>
+                      <td>Price 1</td>
+                      <td>Colour 1</td>
+                      <td>Date Bought 1</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Brand 2</td>
+                      <td>Style 2</td>
+                      <td>Price 2</td>
+                      <td>Colour 2</td>
+                      <td>Date Bought 2</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Brand 3</td>
+                      <td>Style 3</td>
+                      <td>Price 3</td>
+                      <td>Colour 3</td>
+                      <td>Date Bought 3</td>
+                    </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2019 CoSneakers by Julian Kanjere</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Privacy</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+      </footer>
+    </div>
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="./static/js/jquery-3.4.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="./static/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="./static/js/bootstrap.bundle.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="./static/js/mdb.min.js"></script>
+    <script type="text/javascript" src="./static/js/addons/datatables.js"></script>
+
+    <script src="./static/js/bootstrap.bundle.min.js"></script>
+    <script src="./static/js/form-validation.js"></script>
+
+    <!--MDBootstrap Datatables initialisation-->
+    <script>
+        $(document).ready(function () {
+            $('#dtSneakersTable').DataTable();
+
+            // false to disable search (or any other option)
+            //$('#dtSneakersTable').DataTable({"searching": false});
+
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+  </body>
 </html>

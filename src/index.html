@@ -52,7 +52,7 @@
     </style>
 
     <!-- Custom styles for this template -->
-    <link href="./static/css/form-validation.css" rel="stylesheet">
+    <!--<link href="./static/css/form-validation.css" rel="stylesheet">-->
 
   </head>
   <body class="bg-light">
@@ -79,7 +79,7 @@
       <div class="row">
         <div class="col-md-12 order-md-1">
           <h2 class="mb-3">Add new purchase</h2>
-          <form class="needs-validation" novalidate onsubmit="return false">
+          <form class="needs-validation" novalidate onsubmit="return false" id="addSneakerForm">
             <div class="row">
               <div class="col-md-3 mb-3">
                 <label for="sneakerBrand">Brand</label>
@@ -97,7 +97,7 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="sneakerPurchaseDate">Purchase Date</label>
-                <input type="text" class="form-control" id="sneakerPurchaseDate" placeholder="Enter sneaker purchase date..." required>
+                <input type="date" class="form-control" id="sneakerPurchaseDate" placeholder="Enter sneaker purchase date..." required>
                 <div class="invalid-feedback">
                   Expiration date required
                 </div>
@@ -107,7 +107,7 @@
             <div class="row">
               <div class="col-md-3 mb-3">
                 <label for="sneakerPrice">Price</label>
-                <input type="text" class="form-control" id="sneakerPrice" placeholder="Enter sneaker price..." value="" required>
+                <input type="number" class="form-control" id="sneakerPrice" placeholder="Enter sneaker price..." value="" required>
                 <div class="invalid-feedback">
                   Valid Brand name is required.
                 </div>
@@ -133,7 +133,7 @@
                 <label class="custom-control-label" for="writeToJSONFile">Write this to JSON file</label>
             </div>
 
-            <button class="btn btn-primary btn-sm btn-block mt-3 mb-3" type="submit" id="addSneakerBtn">Add Purchase</button>
+            <button class="btn btn-primary btn-sm btn-block mt-3 mb-3" type="submit" id="addSneakerBtn" onclick="addSneakerPurchase();">Add Purchase</button>
           </form>
         </div>
 
@@ -205,7 +205,7 @@
     <script type="text/javascript" src="./static/js/popper.min.js"></script>
 
     <!-- Boostrap form validation -->
-    <script src="./static/js/form-validation.js"></script>
+    <!--<script src="./static/js/form-validation.js"></script>-->
 
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="./static/js/mdb.min.js"></script>
@@ -260,22 +260,27 @@
             //$('#dtSneakersTable').DataTable();
             //$('#dtSneakersTable').DataTable({"searching": false}); //false to disable search (or any other option)
             $('.dataTables_length').addClass('bs-select');
-            $('#addSneakerBtn').click(addSneakerPurchase);
+
+            //$('#addSneakerBtn').click(addSneakerPurchase); //rather user onlick directly on the button element
         });
 
         function addSneakerPurchase() {
-          console.log("Hello");
-          var dtSneakersTableRef = $('#dtSneakersTable').DataTable();
-          var rowCount = dtSneakersTableRef.data().count();
-          // console.log("Datatable row count " + rowCount);
-          // console.log("document.getElementById(\"sneakerBrand\").value" + document.getElementById("sneakerBrand").value);
-          // console.log("document.getElementById(\"sneakerStyle\").value" + document.getElementById("sneakerStyle").value);
-          // console.log("document.getElementById(\"sneakerPrice\").value" + document.getElementById("sneakerPrice").value);
-          // console.log("document.getElementById(\"sneakerColour\")" + document.getElementById("sneakerColour"));
-          // console.log("$(\"#elementId :selected\").text();" +$("#sneakerColour :selected").text());
-          // console.log("document.getElementById(\"sneakerPurchaseDate\").value" + document.getElementById("sneakerPurchaseDate").value);
-          var newRowNumber = rowCount + 1;
-          dtSneakersTableRef.row.add( {
+            var addSneakerFormRef = document.getElementById('addSneakerForm');
+
+            // if form validation fails, prevent form submission
+            if (addSneakerFormRef.checkValidity() === false) {
+                //event.preventDefault();
+                event.stopPropagation();
+                //console.log("addSneakerFormRef.checkValidity() " + addSneakerFormRef.checkValidity() )
+                addSneakerFormRef.classList.add('was-validated')
+                return;
+            };
+            var dtSneakersTableRef = $('#dtSneakersTable').DataTable();
+            var rowCount = dtSneakersTableRef.data().count();
+            // console.log("Datatable row count " + rowCount);
+
+            var newRowNumber = rowCount + 1;
+            dtSneakersTableRef.row.add( {
                             0: newRowNumber,
                             1: document.getElementById("sneakerBrand").value,
                             2: document.getElementById("sneakerStyle").value,
@@ -283,6 +288,9 @@
                             4: $("#sneakerColour :selected").text(), //$("#sneakerColour :selected").value()
                             5: document.getElementById("sneakerPurchaseDate").value
                         } ).draw();
+            console.log("addSneakerFormRef.classList " + addSneakerFormRef.classList);
+            addSneakerFormRef.classList.remove('was-validated');
+            addSneakerFormRef.reset();
         };
     </script>
   </body>

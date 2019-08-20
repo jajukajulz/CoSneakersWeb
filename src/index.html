@@ -155,31 +155,31 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Brand 1</td>
-                      <td>Style 1</td>
-                      <td>Price 1</td>
-                      <td>Colour 1</td>
-                      <td>Date Bought 1</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Brand 2</td>
-                      <td>Style 2</td>
-                      <td>Price 2</td>
-                      <td>Colour 2</td>
-                      <td>Date Bought 2</td>
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Brand 3</td>
-                      <td>Style 3</td>
-                      <td>Price 3</td>
-                      <td>Colour 3</td>
-                      <td>Date Bought 3</td>
-                    </tr>
-                  </tbody>
+                    <!--<tr>-->
+                      <!--<th scope="row">1</th>-->
+                      <!--<td>Brand 1</td>-->
+                      <!--<td>Style 1</td>-->
+                      <!--<td>Price 1</td>-->
+                      <!--<td>Colour 1</td>-->
+                      <!--<td>Date Bought 1</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                      <!--<th scope="row">2</th>-->
+                      <!--<td>Brand 2</td>-->
+                      <!--<td>Style 2</td>-->
+                      <!--<td>Price 2</td>-->
+                      <!--<td>Colour 2</td>-->
+                      <!--<td>Date Bought 2</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                      <!--<th scope="row">3</th>-->
+                      <!--<td>Brand 3</td>-->
+                      <!--<td>Style 3</td>-->
+                      <!--<td>Price 3</td>-->
+                      <!--<td>Colour 3</td>-->
+                      <!--<td>Date Bought 3</td>-->
+                    <!--</tr>-->
+                  <!--</tbody>-->
               </table>
           </div>
         </div>
@@ -224,27 +224,38 @@
             .then(function(sneakerJsonArray) {
                 console.log(sneakerJsonArray);
                 var sneakerArray = sneakerJsonArray;
+                console.log("sneakerArray.length " + sneakerArray.length);
                 var tableRowCount = $('#dtSneakersTable tr').length;
+                console.log("tableRowCount " + tableRowCount );
+                var dtSneakersTableRef = $('#dtSneakersTable').DataTable();
                 var newRowNumber = 0;
                 for (var i = 0; i < sneakerArray.length; i++) {
-                    newRowNumber = tableRowCount + i + 1;
-                    console.log("sneakerArray.length " + sneakerArray.length);
-                    console.log("sneakerArray[i] " + sneakerArray[i]);
-                    console.log("sneakerArray[i].Brand " + sneakerArray[i].Brand);
+                    newRowNumber = tableRowCount + i;
+                    //console.log("newRowNumber " + newRowNumber);
+                    //console.log("sneakerArray[i] " + sneakerArray[i]);
+                    //console.log("sneakerArray[i].Brand " + sneakerArray[i].Brand);
 
-                    var sneakerTableRowHtml = '<tr><th scope="row">'+newRowNumber+'</th>' +
-                        '<td>'+sneakerArray[i].Brand+'</td>' +
-                        '<td>'+sneakerArray[i].Style+'</td>' +
-                        '<td>'+sneakerArray[i].Price+'</td>' +
-                        '<td>'+sneakerArray[i].Color+'</td>' +
-                        '<td>'+sneakerArray[i].Date+'</td>' +
-                        '</tr>';
-                    $(dtSneakersTable).find('tbody').append(sneakerTableRowHtml);
+                    dtSneakersTableRef.row.add( {
+                            0: newRowNumber,
+                            1: sneakerArray[i].Brand,
+                            2: sneakerArray[i].Style,
+                            3: sneakerArray[i].Price,
+                            4: sneakerArray[i].Color,
+                            5: sneakerArray[i].Date
+                        } ).draw();
+
+                    // var sneakerTableRowHtml = '<tr><th scope="row">'+newRowNumber+'</th>' +
+                    //     '<td>'+sneakerArray[i].Brand+'</td>' +
+                    //     '<td>'+sneakerArray[i].Style+'</td>' +
+                    //     '<td>'+sneakerArray[i].Price+'</td>' +
+                    //     '<td>'+sneakerArray[i].Color+'</td>' +
+                    //     '<td>'+sneakerArray[i].Date+'</td>' +
+                    //     '</tr>';
+                    // $(dtSneakersTable).find('tbody').append(sneakerTableRowHtml);
                 }
             });
-            $('#dtSneakersTable').DataTable();
+            //$('#dtSneakersTable').DataTable();
             //$('#dtSneakersTable').DataTable({"searching": false}); //false to disable search (or any other option)
-
             $('.dataTables_length').addClass('bs-select');
         });
     </script>

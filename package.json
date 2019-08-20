@@ -1,0 +1,19 @@
+{
+  "name": "cosneakersweb",
+  "version": "1.0.0",
+  "description": "JavaScript powered Web Front End with a JSON DB store",
+  "main": "server.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jajukajulz/CoSneakersWeb.git"
+  },
+  "author": "Julian Kanjere",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jajukajulz/CoSneakersWeb/issues"
+  },
+  "homepage": "https://github.com/jajukajulz/CoSneakersWeb#readme"
+}

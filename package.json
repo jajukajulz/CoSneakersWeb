@@ -4,7 +4,11 @@
   "description": "JavaScript powered Web Front End with a JSON DB store",
   "main": "server.js",
   "scripts": {
-    "test": "test"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "watchify src/static/js/app.js -o src/static/js/bundle.js -v",
+    "build": "browserify src/static/js/app.js -o src/static/js/bundle.js -v",
+    "dev": "npm run watch & nodemon server.js --host 0.0.0.0",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

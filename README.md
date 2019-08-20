@@ -1,7 +1,7 @@
 # CoSneakersWeb
 JavaScript powered Web Front End with a JSON DB store
 
-##Built using
+## Built using
 - HTML5
 - Bootstrap v4.3.1 (https://getbootstrap.com/)
 - Material Design for Bootstrap Free v4.8.8 (https://mdbootstrap.com/)
@@ -28,7 +28,7 @@ $npm run dev
 ```
 
 
-##Notes on Libraries
+## Notes on Libraries
 - Using browserify and watchify to improve client-side-javascript workflow
 
 - browserify - a tool for bundling javascript modules written in node.js style for the browser. browserify not only concatenates your javascript libraries to a single bundle but can also transform your coffesscript, typescript, jsx etc files to javascrpt and then also add them to the bundle.

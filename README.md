@@ -7,7 +7,7 @@ JavaScript powered Web Front End with a JSON DB store. When the Web Application 
 - Material Design for Bootstrap Free v4.8.8 (https://mdbootstrap.com/)
 - Font Awesome Free 5.8.2 by @fontawesome (https://fontawesome.com)
 - jQuery v3.4.1 ((c) JS Foundation and other contributors)
-- toastr (https://codeseven.github.io/toastr/)
+- toastr v2.1.3 (https://codeseven.github.io/toastr/)
 
 ## Installation (Development Environment)
 In order to run CoSneakersWeb:

@@ -16,6 +16,8 @@
     <!-- MDBootstrap Datatables  -->
     <link href="./static/css/addons/datatables.min.css" rel="stylesheet">
 
+    <!--Link to toastr.css -->
+    <link href="./static/css/toastr.min.css" rel="stylesheet"/>
 
     <style>
       /* Vanilla Bootstrap  */
@@ -213,6 +215,10 @@
     <!-- MDBootstrap Datatables JS  -->
     <script type="text/javascript" src="./static/js/addons/datatables.min.js"></script>
 
+    <!--Link to toastr.js -->
+    <script type="text/javascript" src="./static/js/toastr.min.js"></script>
+
+
     <!-- Custom JS  -->
     <!--<script type="text/javascript" src="./static/js/bundle.js"></script>-->
 
@@ -288,7 +294,10 @@
                             4: $("#sneakerColour :selected").text(), //$("#sneakerColour :selected").value()
                             5: document.getElementById("sneakerPurchaseDate").value
                         } ).draw();
-            console.log("addSneakerFormRef.classList " + addSneakerFormRef.classList);
+
+            // Display a success toast with no title
+            toastr.success('New sneaker added!')
+
             addSneakerFormRef.classList.remove('was-validated');
             addSneakerFormRef.reset();
         };

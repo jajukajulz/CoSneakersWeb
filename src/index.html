@@ -213,16 +213,37 @@
     <!-- MDBootstrap Datatables JS  -->
     <script type="text/javascript" src="./static/js/addons/datatables.min.js"></script>
 
-
-
+    <!-- Custom JS  -->
+    <!--<script type="text/javascript" src="./static/js/bundle.js"></script>-->
 
     <!--MDBootstrap Datatables initialisation-->
     <script>
         $(document).ready(function () {
-            $('#dtSneakersTable').DataTable();
+            fetch("/db/my_sneakers.json")
+            .then(response => response.json())
+            .then(function(sneakerJsonArray) {
+                console.log(sneakerJsonArray);
+                var sneakerArray = sneakerJsonArray;
+                var tableRowCount = $('#dtSneakersTable tr').length;
+                var newRowNumber = 0;
+                for (var i = 0; i < sneakerArray.length; i++) {
+                    newRowNumber = tableRowCount + i + 1;
+                    console.log("sneakerArray.length " + sneakerArray.length);
+                    console.log("sneakerArray[i] " + sneakerArray[i]);
+                    console.log("sneakerArray[i].Brand " + sneakerArray[i].Brand);
 
-            // false to disable search (or any other option)
-            //$('#dtSneakersTable').DataTable({"searching": false});
+                    var sneakerTableRowHtml = '<tr><th scope="row">'+newRowNumber+'</th>' +
+                        '<td>'+sneakerArray[i].Brand+'</td>' +
+                        '<td>'+sneakerArray[i].Style+'</td>' +
+                        '<td>'+sneakerArray[i].Price+'</td>' +
+                        '<td>'+sneakerArray[i].Color+'</td>' +
+                        '<td>'+sneakerArray[i].Date+'</td>' +
+                        '</tr>';
+                    $(dtSneakersTable).find('tbody').append(sneakerTableRowHtml);
+                }
+            });
+            $('#dtSneakersTable').DataTable();
+            //$('#dtSneakersTable').DataTable({"searching": false}); //false to disable search (or any other option)
 
             $('.dataTables_length').addClass('bs-select');
         });

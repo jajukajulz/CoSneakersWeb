@@ -133,7 +133,7 @@
                 <label class="custom-control-label" for="writeToJSONFile">Write this to JSON file</label>
             </div>
 
-            <button class="btn btn-primary btn-sm btn-block mt-3 mb-3" type="submit">Add Purchase</button>
+            <button class="btn btn-primary btn-sm btn-block mt-3 mb-3" type="submit" id="addSneakerBtn">Add Purchase</button>
           </form>
         </div>
 
@@ -222,11 +222,14 @@
             fetch("/db/my_sneakers.json")
             .then(response => response.json())
             .then(function(sneakerJsonArray) {
-                console.log(sneakerJsonArray);
+                //console.log(sneakerJsonArray);
+
                 var sneakerArray = sneakerJsonArray;
-                console.log("sneakerArray.length " + sneakerArray.length);
+                //console.log("sneakerArray.length " + sneakerArray.length);
+
                 var tableRowCount = $('#dtSneakersTable tr').length;
-                console.log("tableRowCount " + tableRowCount );
+                //console.log("tableRowCount " + tableRowCount );
+
                 var dtSneakersTableRef = $('#dtSneakersTable').DataTable();
                 var newRowNumber = 0;
                 for (var i = 0; i < sneakerArray.length; i++) {
@@ -257,7 +260,30 @@
             //$('#dtSneakersTable').DataTable();
             //$('#dtSneakersTable').DataTable({"searching": false}); //false to disable search (or any other option)
             $('.dataTables_length').addClass('bs-select');
+            $('#addSneakerBtn').click(addSneakerPurchase);
         });
+
+        function addSneakerPurchase() {
+          console.log("Hello");
+          var dtSneakersTableRef = $('#dtSneakersTable').DataTable();
+          var rowCount = dtSneakersTableRef.data().count();
+          console.log("Datatable row count " + rowCount);
+          console.log("document.getElementById(\"sneakerBrand\").value" + document.getElementById("sneakerBrand").value);
+          console.log("document.getElementById(\"sneakerStyle\").value" + document.getElementById("sneakerStyle").value);
+          console.log("document.getElementById(\"sneakerPrice\").value" + document.getElementById("sneakerPrice").value);
+          console.log("document.getElementById(\"sneakerColour\")" + document.getElementById("sneakerColour"));
+          console.log("$(\"#elementId :selected\").text();" +$("#sneakerColour :selected").text());
+          console.log("document.getElementById(\"sneakerPurchaseDate\").value" + document.getElementById("sneakerPurchaseDate").value);
+          var newRowNumber = rowCount + 1;
+          dtSneakersTableRef.row.add( {
+                            0: newRowNumber,
+                            1: document.getElementById("sneakerBrand").value,
+                            2: document.getElementById("sneakerStyle").value,
+                            3: document.getElementById("sneakerPrice").value,
+                            4: $("#sneakerColour :selected").text(), //$("#sneakerColour :selected").value()
+                            5: document.getElementById("sneakerPurchaseDate").value
+                        } ).draw();
+        };
     </script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 # CoSneakersWeb
-JavaScript powered Web Front End with a JSON DB store. When the Web Application is loaded, the sneaker data in the JSON file is imported and displayed in a Sneaker List (which is a Material Design Bootstrap Datatable) that is sortable and searchable. In addition, there is a form that allows for dynamically adding new sneaker data to the Sneaker List - either in memory (lost on refresh) or persisted to the JSON store. On successful addition of a new sneaker, a success notification pops up. Similarly, on failure to add a new sneaker, a failure notification appears.  
+JavaScript powered Web Front End (running of node js and express server) with a JSON DB store. When the Web Application is loaded, the sneaker data in the JSON file is imported and displayed in a Sneaker List (which is a Material Design Bootstrap Datatable) that is sortable and searchable. In addition, there is a form that allows for dynamically adding new sneaker data to the Sneaker List - either in memory (lost on refresh) or persisted to the JSON store. On successful addition of a new sneaker, a success notification pops up. Similarly, on failure to add a new sneaker, a failure notification appears.  
 
 ## Built using
 - HTML5
@@ -8,6 +8,8 @@ JavaScript powered Web Front End with a JSON DB store. When the Web Application 
 - Font Awesome Free 5.8.2 by @fontawesome (https://fontawesome.com)
 - jQuery v3.4.1 ((c) JS Foundation and other contributors)
 - toastr v2.1.3 (https://codeseven.github.io/toastr/)
+- Node JS v10.16.0 (https://nodejs.org/en/)
+- Express JS 4.17.1 (https://expressjs.com/)
 
 ## Installation (Development Environment)
 In order to run CoSneakersWeb:

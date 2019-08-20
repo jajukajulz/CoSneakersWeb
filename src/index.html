@@ -278,7 +278,12 @@
                 //event.preventDefault();
                 event.stopPropagation();
                 //console.log("addSneakerFormRef.checkValidity() " + addSneakerFormRef.checkValidity() )
+
                 addSneakerFormRef.classList.add('was-validated')
+
+                // Display a success toast with no title
+                toastr.error('Error adding new sneaker, please check and try again!');
+
                 return;
             };
             var dtSneakersTableRef = $('#dtSneakersTable').DataTable();
@@ -296,7 +301,7 @@
                         } ).draw();
 
             // Display a success toast with no title
-            toastr.success('New sneaker added!')
+            toastr.success('New sneaker added!');
 
             addSneakerFormRef.classList.remove('was-validated');
             addSneakerFormRef.reset();

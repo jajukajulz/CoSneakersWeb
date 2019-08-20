@@ -39,6 +39,7 @@ $npm run dev
 
 - nodemon - a utility that will monitor for any changes in source code and automatically restart your development server. 
 
-- For creating our production bundle, we’ll use browserify and uglify:
-"build": "browserify src/js/app.js | uglifyjs -mc warnings=false > src/js/bundle.js",
-$npm run build #npm run build before deploying to production
+- For creating our production bundle, we’ll use browserify and uglify i.e. run the build script `"build": "browserify src/js/app.js | uglifyjs -mc warnings=false > src/js/bundle.js"` before deploying to production:
+```
+$npm run build 
+```

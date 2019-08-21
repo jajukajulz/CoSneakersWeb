@@ -33,7 +33,7 @@ $(document).ready(function () {
     //$('#dtSneakersTable').DataTable({"searching": false}); //false to disable search (or any other option)
     $('.dataTables_length').addClass('bs-select');
 
-    //$('#addSneakerBtn').click(addSneakerPurchase); //switched to use onclick() directly on the button element
+    $('#addSneakerBtn').click(addSneakerPurchase); //switched to use onclick() directly on the button element
 });
 
 //function to process submission of new sneaker via "Add new purchase" form

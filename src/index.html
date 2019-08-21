@@ -320,20 +320,20 @@
                 var newSneakerDetailsDict = {
                     "Brand": trSneakerBrand,
                     "Style": trSneakerStyle,
-                    "Color": trSneakerPrice,
-                    "Date": trSneakerColour,
-                    "Price": trSneakerPurchaseDate
+                    "Price": trSneakerPrice,
+                    "Color": trSneakerColour,
+                    "Date": trSneakerPurchaseDate
                 };
                 var addSneakerRequest = new XMLHttpRequest();
                 addSneakerRequest.open('post', '/addSneaker');
                 addSneakerRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
-                console.log("Request being sent " + JSON.stringify({
-                    'newSneakerDetails':newSneakerDetailsDict,
-                    'filePath': "./src/db/",
-                    'fileName': "my_sneakers.json"
-                        }
-                    ));
+                // console.log("Request being sent " + JSON.stringify({
+                //     'newSneakerDetails':newSneakerDetailsDict,
+                //     'filePath': "./src/db/",
+                //     'fileName': "my_sneakers.json"
+                //         }
+                //     ));
 
                 addSneakerRequest.send(JSON.stringify({
                     'newSneakerDetails':newSneakerDetailsDict,

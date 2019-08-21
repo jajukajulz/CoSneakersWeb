@@ -15,6 +15,7 @@ Access the app on https://peaceful-stonebraker-699389.netlify.com/ (PS - writing
 - toastr v2.1.3 (https://codeseven.github.io/toastr/)
 - Node JS v10.16.0 (https://nodejs.org/en/)
 - Express JS 4.17.1 (https://expressjs.com/)
+- Hosted on Netlify (https://www.netlify.com/)
 
 ## Installation (Development Environment)
 In order to run CoSneakersWeb:

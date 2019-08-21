@@ -1,187 +1,117 @@
+<!--MDBootstrap Datatables initialisation-->
+$(document).ready(function () {
+    fetch("/db/my_sneakers.json")
+    .then(response => response.json())
+    .then(function(sneakerJsonArray) {
+        //console.log(sneakerJsonArray);
 
-//
-//
-//
-//
-// function TriggerAlertOpen(parentDivID, alertDivID, alertMessage) {
-//   //open  alert box after 1 seconds (1000 milliseconds):
-//   console.log("TriggerAlertOpen")
-//   var divNotificationHtml = '<div id='+alertDivID+' class="alert alert-success fade in show"><button type="button" class="close close-alert" data-dismiss="alert" aria-hidden="true">×</button><strong>'+alertMessage+'</strong></div>'
-//   console.log(divNotificationHtml)
-//   $(parentDivID).html(divNotificationHtml);
-// };
-//
-// function TriggerAlertClose(alertDivID) {
-//   //remove  alert box after 5 seconds (5000 milliseconds):
-//   window.setTimeout(function () {
-//       $(alertDivID).fadeTo(1000, 0).slideUp(1000, function () {
-//           $(this).remove();
-//       });
-//   }, 5000);
-// };
-//
-// $('#numHarvestButton').click(function (e) {
-//   e.preventDefault()
-//   //alert("Window Loaded");
-//   App.contracts.TheProduct.deployed().then(function(instance) {
-//   theProductInstance = instance;
-//   return theProductInstance.noHarvests();
-//     }).then(function(harvestsCount) {
-//       console.log("numHarvestButton Click - " + harvestsCount.toString());
-//       var divNumHarvestHtml = '<div class="alert alert-success fade in show"><button type="button" class="close close-alert" data-dismiss="alert" aria-hidden="true">×</button><strong>Number of Harvest entries </strong>' + harvestsCount.toString() +'</div>'
-//       $('#divNumHarvest').html(divNumHarvestHtml);
-//     }).catch(function(error) {
-//       console.warn(error);
-//     });
-// });
-//
-// $('#numStorageButton').click(function (e) {
-//   e.preventDefault()
-//   //alert("Window Loaded");
-//   App.contracts.TheProduct.deployed().then(function(instance) {
-//   theProductInstance = instance;
-//   return theProductInstance.noStorage();
-//     }).then(function(storageCount) {
-//       console.log("numStorageButton Click - " + storageCount.toString());
-//       var divNumStorageHtml = '<div class="alert alert-success fade in show"><button type="button" class="close close-alert" data-dismiss="alert" aria-hidden="true">×</button><strong>Number of Storage entries </strong>' + storageCount.toString() +'</div>'
-//       $('#divNumStorage').html(divNumStorageHtml);
-//     }).catch(function(error) {
-//       console.warn(error);
-//     });
-// });
-//
-//
-// function init() {
-//     console.log("Initialising application");
-//     var sneakerArray = readJSON();
-//     console.log(JSON.stringify(sneakerArray, null, "  "));
-//     //renderSneakerTable(sneakerArray);
-// };
-//
-//   // fetch("./static/db/my_sneakers.json")
-//             // .then(response => response.json())
-//             // .then(json => console.log(json));
-//
-// // fetch("https://example.com/api/request", {
-// //             method: 'POST',
-// //             body: JSON.stringify(data),
-// //             mode: 'cors',
-// //             headers: {
-// //                 'Content-Type': 'application/json',
-// //                 "Accept": 'application/json',
-// //             }
-// //         })
-// //     .then((data) => data.json())
-// //     .then((resp) => console.log(resp))
-// //     .catch((err) => console.log(err))
-//
-// function readTextFile(file, callback) {
-//     var rawFile = new XMLHttpRequest();
-//     rawFile.overrideMimeType("application/json");
-//     rawFile.open("GET", file, true);
-//     rawFile.onreadystatechange = function() {
-//         if (rawFile.readyState === 4 && rawFile.status == "200") {
-//             callback(rawFile.responseText);
-//         }
-//     }
-//     rawFile.send(null);
-// }
-//
-//
-//
-//
-// function readJSON(){
-//       // fetch("./../db/my_sneakers.json",
-//       //      {
-//       //           method: 'POST',
-//       //           body: JSON.stringify(response),
-//       //           mode: 'cors',
-//       //           headers: {
-//       //               'Content-Type': 'application/json',
-//       //               "Accept": 'application/json',
-//       //           }
-//       //       }
-//       //     )
-//       //       .then(response => response.json())
-//       //       .then(json => {console.log(json);
-//       //           // for (var i = 0; i < json.length; i++) {
-//       //           //     var th = document.createElement("th");      // TABLE HEADER.
-//       //           //     th.innerHTML = col[i];
-//       //           //     tr.appendChild(th);
-//       //           // }
-//       //           return json;
-//       //       }).catch(err => {
-//       //             // Do something for an error here
-//       //           });
-//         var file_url = "./../db/my_sneakers.json/";
-//         var sneakerArray = [];      // array to store sneakers
-//     //   $.getJSON(file_url, function (data) {
-//     //     $.each(data, function (key, value) {
-//     //         sneakerArray.push(value);       // push sneakers into array
-//     //     });
-//     //     return sneakerArray;
-//     // });
-//     //usage:
-//     readTextFile(file_url, function(text){
-//     var data = JSON.parse(text);
-//     console.log(data);
-//     return data;
-//     });
-// };
-//
-// function renderSneakerTable(sneakerArray) {
-//     // EXTRACT VALUE FOR TABLE HEADER.
-//     var col = [];
-//     for (var i = 0; i < sneakerArray.length; i++) {
-//         for (var key in sneakerArray[i]) {
-//             if (col.indexOf(key) === -1) {
-//                 col.push(key);
-//             }
-//         }
-//     }
-//
-//     // CREATE DYNAMIC TABLE.
-//     var table = document.createElement("table");
-//
-//     // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-//
-//     var tr = table.insertRow(-1);                   // TABLE ROW.
-//
-//     for (var i = 0; i < col.length; i++) {
-//         var th = document.createElement("th");      // TABLE HEADER.
-//         th.innerHTML = col[i];
-//         tr.appendChild(th);
-//     }
-//
-//     // ADD JSON DATA TO THE TABLE AS ROWS.
-//     for (var i = 0; i < sneakerArray.length; i++) {
-//
-//         tr = table.insertRow(-1);
-//
-//         for (var j = 0; j < col.length; j++) {
-//             var tabCell = tr.insertCell(-1);
-//             tabCell.innerHTML = sneakerArray[i][col[j]];
-//         }
-//     }
-//
-//     // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-//     var divContainer = document.getElementById("showData");
-//     divContainer.innerHTML = "";
-//     divContainer.appendChild(table);
-// };
-//
-//
-// function AddSneaker() {
-//   //remove  alert box after 5 seconds (5000 milliseconds):
-//   window.setTimeout(function () {
-//       $(alertDivID).fadeTo(1000, 0).slideUp(1000, function () {
-//           $(this).remove();
-//       });
-//   }, 5000);
-// };
-// //
-// // // app.js is included in index.html
-// // // when index.html is opened in the browser, load function is executed when complete page is fully loaded, including all frames, objects and images
-// // $(window).on('load', function () {
-// //    init();
-// // });
+        var sneakerArray = sneakerJsonArray;
+        //console.log("sneakerArray.length " + sneakerArray.length);
+
+        var tableRowCount = $('#dtSneakersTable tr').length;
+        //console.log("tableRowCount " + tableRowCount );
+
+        var dtSneakersTableRef = $('#dtSneakersTable').DataTable();
+        var newRowNumber = 0;
+        for (var i = 0; i < sneakerArray.length; i++) {
+            newRowNumber = tableRowCount + i;
+            //console.log("newRowNumber " + newRowNumber);
+            //console.log("sneakerArray[i] " + sneakerArray[i]);
+            //console.log("sneakerArray[i].Brand " + sneakerArray[i].Brand);
+
+            //add new row to Datatable
+            dtSneakersTableRef.row.add( {
+                    0: newRowNumber,
+                    1: sneakerArray[i].Brand,
+                    2: sneakerArray[i].Style,
+                    3: sneakerArray[i].Price,
+                    4: sneakerArray[i].Color,
+                    5: sneakerArray[i].Date
+                } ).draw();
+        }
+    });
+    //$('#dtSneakersTable').DataTable({"searching": false}); //false to disable search (or any other option)
+    $('.dataTables_length').addClass('bs-select');
+
+    //$('#addSneakerBtn').click(addSneakerPurchase); //switched to use onclick() directly on the button element
+});
+
+//function to process submission of new sneaker via "Add new purchase" form
+function addSneakerPurchase() {
+    var addSneakerFormRef = document.getElementById('addSneakerForm');
+
+    // if form validation fails, prevent form submission
+    if (addSneakerFormRef.checkValidity() === false) {
+        //event.preventDefault();
+        event.stopPropagation();
+        addSneakerFormRef.classList.add('was-validated')
+
+        // Display a success toast with no title
+        toastr.error('Error adding new sneaker, please check and try again!');
+
+        //since validation failed, exit the submission
+        return;
+    };
+
+    var dtSneakersTableRef = $('#dtSneakersTable').DataTable();
+    var rowCount = dtSneakersTableRef.data().count();
+    // console.log("Datatable row count " + rowCount);
+
+    var newRowNumber = rowCount + 1;
+    var trRowNum = newRowNumber;
+    var trSneakerBrand = document.getElementById("sneakerBrand").value;
+    var trSneakerStyle = document.getElementById("sneakerStyle").value;
+    var trSneakerPrice = document.getElementById("sneakerPrice").value;
+    var trSneakerColour = $("#sneakerColour :selected").text(); //$("#sneakerColour :selected").value()
+    var trSneakerPurchaseDate =  document.getElementById("sneakerPurchaseDate").value;
+
+    //add new row from "Add new purchase" form to Datatable, this will live in Memory and lost on refresh
+    dtSneakersTableRef.row.add( {
+                    0: trRowNum,
+                    1: trSneakerBrand,
+                    2: trSneakerStyle,
+                    3: trSneakerPrice,
+                    4: trSneakerColour,
+                    5: trSneakerPurchaseDate
+                } ).draw();
+
+    // Display a success toast with no title
+    toastr.success('New sneaker added to Browser Table (In Memory)!');
+
+    var writeToJSONFileValue = document.getElementById("writeToJSONFile").checked;
+    addSneakerFormRef.classList.remove('was-validated');
+    addSneakerFormRef.reset();
+
+    //if write to JSON checked, persist new sneaker details to file via XMLHTTPRequest
+    //console.log("writeToJSONFileValue " + writeToJSONFileValue );
+    if (writeToJSONFileValue === true){
+        var newSneakerDetailsDict = {
+            "Brand": trSneakerBrand,
+            "Style": trSneakerStyle,
+            "Price": trSneakerPrice,
+            "Color": trSneakerColour,
+            "Date": trSneakerPurchaseDate
+        };
+        var addSneakerRequest = new XMLHttpRequest();
+        addSneakerRequest.open('post', '/addSneaker');
+        addSneakerRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+        // console.log("Request being sent " + JSON.stringify({
+        //     'newSneakerDetails':newSneakerDetailsDict,
+        //     'filePath': "./src/db/",
+        //     'fileName': "my_sneakers.json"
+        //         }
+        //     ));
+
+        addSneakerRequest.send(JSON.stringify({
+            'newSneakerDetails':newSneakerDetailsDict,
+            'filePath': "./src/db/",
+            'fileName': "my_sneakers.json"
+                }
+            )
+        );
+
+        // Display a success toast with no title
+        toastr.success('New sneaker added to JSON file (On Disk)!');
+    }
+};

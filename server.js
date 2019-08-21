@@ -46,28 +46,25 @@ router.post('/addSneaker',function(req,res, next){
   }
 });
 
+router.get('/test', (req, res) => res.send('Test Route!'));
 
 function saveToJSON(newSneakerDetails, filePath, fileName) {
     var jsonFileName = path.join(filePath + fileName);
-    console.log("saveToJSON " + jsonFileName);
     fs.readFile(jsonFileName, function (err, data) {
         if (err) {
-            console.log("current JSON before parse err " + err);
+            console.log("Error reading JSON file" + err);
         }
         else {
-            console.log("current JSON before parse  " + data);
-
             var json = JSON.parse(data);
-            console.log("currentJSON  " + JSON.stringify(json));
-
             json.push(newSneakerDetails);
-            fs.writeFile(jsonFileName, JSON.stringify(json));
-            console.log("writeJSON  " + JSON.stringify(json));
+            fs.writeFile(jsonFileName, JSON.stringify(json), (err) => {
+                  if (err) throw err;
+                  console.log('The JSON file has been successfully updated!');
+                });
         }
     });
 };
 
 
-router.get('/hello', (req, res) => res.send('Hello World!'));
 
 app.listen(port, () => console.log(`CoSneakers Web app listening on port ${port}!`));

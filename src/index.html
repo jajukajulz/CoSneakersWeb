@@ -220,7 +220,7 @@
 
 
     <!-- Custom JS  -->
-    <!--<script type="text/javascript" src="./static/js/bundle.js"></script>-->
+    <script type="text/javascript" src="./static/js/app.js"></script>
 
     <!--MDBootstrap Datatables initialisation-->
     <script>
@@ -289,22 +289,63 @@
             var dtSneakersTableRef = $('#dtSneakersTable').DataTable();
             var rowCount = dtSneakersTableRef.data().count();
             // console.log("Datatable row count " + rowCount);
-
             var newRowNumber = rowCount + 1;
+
+            var trRowNum = newRowNumber;
+            var trSneakerBrand = document.getElementById("sneakerBrand").value;
+            var trSneakerStyle = document.getElementById("sneakerStyle").value;
+            var trSneakerPrice = document.getElementById("sneakerPrice").value;
+            var trSneakerColour = $("#sneakerColour :selected").text(); //$("#sneakerColour :selected").value()
+            var trSneakerPurchaseDate =  document.getElementById("sneakerPurchaseDate").value;
+
             dtSneakersTableRef.row.add( {
-                            0: newRowNumber,
-                            1: document.getElementById("sneakerBrand").value,
-                            2: document.getElementById("sneakerStyle").value,
-                            3: document.getElementById("sneakerPrice").value,
-                            4: $("#sneakerColour :selected").text(), //$("#sneakerColour :selected").value()
-                            5: document.getElementById("sneakerPurchaseDate").value
+                            0: trRowNum,
+                            1: trSneakerBrand,
+                            2: trSneakerStyle,
+                            3: trSneakerPrice,
+                            4: trSneakerColour,
+                            5: trSneakerPurchaseDate
                         } ).draw();
 
             // Display a success toast with no title
             toastr.success('New sneaker added!');
 
+            var writeToJSONFileValue = document.getElementById("writeToJSONFile").checked;
+
             addSneakerFormRef.classList.remove('was-validated');
             addSneakerFormRef.reset();
+
+            console.log("writeToJSONFileValue " + writeToJSONFileValue )
+            if (writeToJSONFileValue === true){
+                var newSneakerDetailsDict = {
+                    "Brand": trSneakerBrand,
+                    "Style": trSneakerStyle,
+                    "Color": trSneakerPrice,
+                    "Date": trSneakerColour,
+                    "Price": trSneakerPurchaseDate
+                };
+                var addSneakerRequest = new XMLHttpRequest();
+                addSneakerRequest.open('post', '/addSneaker');
+                addSneakerRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
+                console.log("Request being sent " + JSON.stringify({
+                    'newSneakerDetails':newSneakerDetailsDict,
+                    'filePath': "./src/db/",
+                    'fileName': "my_sneakers.json"
+                        }
+                    ));
+
+                addSneakerRequest.send(JSON.stringify({
+                    'newSneakerDetails':newSneakerDetailsDict,
+                    'filePath': "./src/db/",
+                    'fileName': "my_sneakers.json"
+                        }
+                    )
+                );
+
+                // Display a success toast with no title
+                toastr.success('New sneaker added to JSON file!');
+            }
         };
     </script>
   </body>

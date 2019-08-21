@@ -2,6 +2,7 @@
 JavaScript powered Web Front End (running of node js and express server) with a JSON DB store. When the Web Application is loaded, the sneaker data in the JSON file is imported and displayed in a Sneaker List (which is a Material Design Bootstrap Datatable) that is sortable, searchable and includes pagination. In addition, there is a form that allows for dynamically adding new sneaker data to the Sneaker List - either in memory (lost on refresh) or persisted to the JSON store. On successful addition of a new sneaker, a success notification pops up. Similarly, on failure to add a new sneaker, a failure notification appears.
 
 Access the app on https://peaceful-stonebraker-699389.netlify.com/ (PS - writing to JSON file on disk doesnt work for security reasons on the cloud hosting package in use).  
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a6ca06d7-6a32-464f-985f-ec385e3724b5/deploy-status)](https://app.netlify.com/sites/peaceful-stonebraker-699389/deploys)
 
 ![Alt text](./src/static/img/screenshot1.png?raw=true "CoSneakersWeb")
 ![Alt text](./src/static/img/screenshot2.png?raw=true "CoSneakersWeb")
